@@ -77,9 +77,9 @@ Property records for Puerto Rico from the official CRIM Catastro Digital (catast
 
 **Does the actor search by deed?** The output includes the deed reference (tomo, folio, finca, escritura) recorded for each parcel. The finca number is assigned by the Registro de la Propiedad, which is a separate registry from CRIM.
 
-**How much does it cost?** Pay per result: $0.005 per run start and $0.005 per parcel returned. 1,000 parcels cost $5.00.
+**How much does it cost?** Pay per result: $0.005 per run start and $0.01 per parcel returned. 1,000 parcels cost $10.00.
 
 ## Links
 
-- [Apify Store listing](https://apify.com/wdavalos/puerto-rico-catastro-scraper-pro)
+- [Apify Store listing](https://apify.com/red.cars/puerto-rico-catastro-scraper-pro)
 - [ScraperFleet page](https://scraperfleet.com/actors/puerto-rico-catastro-scraper-pro/)
