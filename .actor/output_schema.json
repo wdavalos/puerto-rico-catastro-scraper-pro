@@ -1,0 +1,12 @@
+{
+    "actorOutputSchemaVersion": 1,
+    "title": "Puerto Rico Catastro Scraper Pro output",
+    "type": "object",
+    "properties": {
+        "results": {
+            "type": "string",
+            "template": "{{links.apiDefaultDatasetUrl}}/items",
+            "description": "Property records: one row per parcel with catastro number, municipality, owner of record, physical and mailing address, lot size, assessed land/structure/total values, deed reference, last sale price and date, seller, buyer, coordinates and a link to the parcel in the CRIM viewer."
+        }
+    }
+}

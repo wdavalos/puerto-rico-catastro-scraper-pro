@@ -1,0 +1,182 @@
+{
+  "title": "Input schema",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "searchMode": {
+      "title": "Search mode",
+      "type": "string",
+      "description": "How to find parcels. catastro_numbers: look up specific parcels. owner_name: owner of record contains this name. municipality: all parcels in a municipality (use with filters). area: parcels inside a bounding box. custom: raw SQL WHERE clause against the CRIM layer.",
+      "editor": "select",
+      "enum": [
+        "catastro_numbers",
+        "owner_name",
+        "municipality",
+        "area",
+        "custom"
+      ],
+      "enumTitles": [
+        "Catastro numbers",
+        "Owner name",
+        "Municipality",
+        "Area (bounding box)",
+        "Custom WHERE clause"
+      ],
+      "default": "catastro_numbers"
+    },
+    "catastroNumbers": {
+      "title": "Catastro numbers",
+      "type": "array",
+      "editor": "stringList",
+      "description": "One or more catastro numbers. Accepts 11-digit parcel form (XXX-XXX-XXX-XX), full 14-digit with unit (XXX-XXX-XXX-XX-XXX), with or without dashes, spaces or dots."
+    },
+    "ownerName": {
+      "title": "Owner name contains",
+      "type": "string",
+      "description": "Owner of record (Dueño) contains this text. Case-insensitive. e.g. RIVERA MORALES",
+      "editor": "textfield"
+    },
+    "municipio": {
+      "title": "Municipality",
+      "type": "string",
+      "description": "Municipality name, e.g. San Juan, Ponce, Bayamón, Río Grande. Case-insensitive.",
+      "editor": "textfield"
+    },
+    "bboxWest": {
+      "title": "Bounding box west (longitude)",
+      "type": "string",
+      "description": "West edge longitude, e.g. -66.5",
+      "editor": "textfield"
+    },
+    "bboxSouth": {
+      "title": "Bounding box south (latitude)",
+      "type": "string",
+      "description": "South edge latitude, e.g. 18.35",
+      "editor": "textfield"
+    },
+    "bboxEast": {
+      "title": "Bounding box east (longitude)",
+      "type": "string",
+      "description": "East edge longitude, e.g. -66.3",
+      "editor": "textfield"
+    },
+    "bboxNorth": {
+      "title": "Bounding box north (latitude)",
+      "type": "string",
+      "description": "North edge latitude, e.g. 18.5",
+      "editor": "textfield"
+    },
+    "centerLat": {
+      "title": "Center latitude",
+      "type": "string",
+      "description": "Center point latitude for a radius search. Used with radiusKm.",
+      "editor": "textfield"
+    },
+    "centerLon": {
+      "title": "Center longitude",
+      "type": "string",
+      "description": "Center point longitude for a radius search. Used with radiusKm.",
+      "editor": "textfield"
+    },
+    "radiusKm": {
+      "title": "Radius (km)",
+      "type": "string",
+      "description": "Radius in kilometers around centerLat/centerLon.",
+      "editor": "textfield"
+    },
+    "customWhere": {
+      "title": "Custom WHERE clause",
+      "type": "string",
+      "description": "Raw ArcGIS SQL WHERE clause against the Parcelas layer, e.g. MUNICIPIO = 'Rincon' AND SALESAMT > 100000. Fields: NUM_CATASTRO, MUNICIPIO, CONTACT, DIRECCION_FISICA, DIRECCION_POSTAL, CABIDA, LAND, STRUCTURE, MACHINERY, TOTALVAL, TAXABLE, DEEDBOOK, DEEDPAGE, ESTATE, DEEDNUM, SALESAMT, SALESDTTM, SELLERNAME, BYERNAME, TIPO.",
+      "editor": "textarea"
+    },
+    "parcelType": {
+      "title": "Parcel type",
+      "type": "string",
+      "description": "TIPO filter: P = parcela (land parcel). Leave empty for all.",
+      "editor": "textfield"
+    },
+    "hasSale": {
+      "title": "Only parcels with a recorded sale",
+      "type": "boolean",
+      "description": "Return only parcels where CRIM records a sale price (SALESAMT > 0).",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "saleYearFrom": {
+      "title": "Sale year from",
+      "type": "string",
+      "description": "Only parcels last sold in this year or later, e.g. 2020.",
+      "editor": "textfield"
+    },
+    "saleYearTo": {
+      "title": "Sale year to",
+      "type": "string",
+      "description": "Only parcels last sold in this year or earlier.",
+      "editor": "textfield"
+    },
+    "hasStructure": {
+      "title": "Only parcels with structures",
+      "type": "boolean",
+      "description": "Assessed structure value greater than 0.",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "vacantOnly": {
+      "title": "Only vacant parcels",
+      "type": "boolean",
+      "description": "No assessed structure value (STRUCTURE = 0).",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "absenteeOnly": {
+      "title": "Only absentee owners",
+      "type": "boolean",
+      "description": "Owner mailing address differs from the parcel's physical address.",
+      "default": false,
+      "editor": "checkbox"
+    },
+    "minTotalValue": {
+      "title": "Min total assessed value",
+      "type": "string",
+      "description": "TOTALVAL at or above this amount (USD).",
+      "editor": "textfield"
+    },
+    "maxTotalValue": {
+      "title": "Max total assessed value",
+      "type": "string",
+      "description": "TOTALVAL at or below this amount (USD).",
+      "editor": "textfield"
+    },
+    "minCabidaM2": {
+      "title": "Min lot size (m2)",
+      "type": "string",
+      "description": "Cabida (lot area) at or above this, in square meters.",
+      "editor": "textfield"
+    },
+    "maxCabidaM2": {
+      "title": "Max lot size (m2)",
+      "type": "string",
+      "description": "Cabida (lot area) at or below this, in square meters.",
+      "editor": "textfield"
+    },
+    "maxItems": {
+      "title": "Max results",
+      "type": "integer",
+      "description": "Maximum number of parcels to return.",
+      "default": 1000,
+      "maximum": 20000,
+      "editor": "number"
+    },
+    "includeGeometry": {
+      "title": "Include parcel geometry",
+      "type": "boolean",
+      "description": "Include the parcel polygon (GeoJSON geometry field) in each result. Makes results heavier.",
+      "default": false,
+      "editor": "checkbox"
+    }
+  },
+  "required": [
+    "searchMode"
+  ]
+}

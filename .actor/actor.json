@@ -1,0 +1,11 @@
+{
+    "actorSpecification": 1,
+    "name": "puerto-rico-catastro-scraper-pro",
+    "version": "0.0",
+    "buildTag": "latest",
+    "title": "Puerto Rico Catastro Scraper Pro",
+    "description": "Property records for Puerto Rico: owner, mailing address, assessed value, lot size, deed and last sale for any parcel, by catastro number, owner or municipality.",
+    "minItems": 1,
+    "output": "./output_schema.json",
+    "dockerImage": "apify/actor-node:20"
+}
